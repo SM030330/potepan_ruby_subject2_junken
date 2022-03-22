@@ -25,7 +25,7 @@ def junken
       break
     when 4
       puts "あっち向いてホイを終了します"
-      @exit = true
+      return :exit
       break
     else 
       puts "1,2,3,4 の整数を記入してください"
@@ -63,20 +63,20 @@ def attimuite
 
     case @user_value
     when 1
-      attimuite_win(1)
       attimuite_result()
+      attimuite_win(1)
       break
     when 2
-      attimuite_win(2)
       attimuite_result()
+      attimuite_win(2)
       break
     when 3
-      attimuite_win(3)
       attimuite_result()
+      attimuite_win(3)
       break
     when 4
-      attimuite_win(4)
       attimuite_result()
+      attimuite_win(4)
       break
     else 
       puts "1,2,3,4 の整数を記入してください"
@@ -92,6 +92,7 @@ def attimuite_win(wi)
     else
       puts "あなたの負けです"
     end
+    @attimuite_iswin = true
   end
 end
 
@@ -104,8 +105,8 @@ end
 # 実行コード
 
 loop do
-  junken()
-  break if @exit == true
+  break if junken() == :exit
   attimuite()
+  break if @attimuite_iswin == true
 end
   
